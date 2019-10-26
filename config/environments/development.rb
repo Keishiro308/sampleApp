@@ -56,4 +56,5 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :test
   host = 'localhost:3000'                     # ローカル環境
   config.action_mailer.default_url_options = { host: host, protocol: 'http' }
+  Rails.application.routes.default_url_options[:host] = host
 end
