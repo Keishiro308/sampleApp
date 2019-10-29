@@ -5,11 +5,17 @@ Rails.application.routes.draw do
   get '/signup', to:'users#new'
   post '/signup', to:'users#create'
   resources :microposts, only: [:create, :destroy]
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   get '/help', to:'static_pages#help'
   get  '/about', to:'static_pages#about'
   get  '/contact', to:'static_pages#contact'
   root 'static_pages#home'
+  resources :relationships, only: [:create, :destroy]
 end
